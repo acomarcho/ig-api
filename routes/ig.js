@@ -8,5 +8,7 @@ router.get("/user/:username", igController.getUserData);
 router.get("/feeds/:username", igController.getUserFeeds);
 // GET /ig/user-and-feeds/:username
 router.get("/user-and-feeds/:username", igController.getUserAndFeeds);
+// GET /ig/post/:shortcode
+router.get("/post/:shortcode", igController.getPostData);
 
 module.exports = router;

@@ -1,4 +1,6 @@
 const { getClient } = require("./igClient");
+const { shortcodeToID } = require("../utils/encoding");
+
 require("dotenv").config();
 
 const getUserData = async (username) => {
@@ -32,13 +34,6 @@ const getUserFeeds = async (username) => {
     const ig = await getClient();
 
     const searchResults = await ig.user.searchExact(username);
-
-    if (!searchResults) {
-      throw {
-        status: 404,
-        message: `Username ${username} not found`,
-      };
-    }
 
     const feed = ig.feed.user(searchResults.pk);
     let posts = await feed.items();
@@ -81,13 +76,6 @@ const getUserAndFeeds = async (username) => {
     const ig = await getClient();
 
     const searchResults = await ig.user.searchExact(username);
-
-    if (!searchResults) {
-      throw {
-        status: 404,
-        message: `Username ${username} not found`,
-      };
-    }
 
     // Get user
     const user = await ig.user.info(searchResults.pk);
@@ -146,8 +134,21 @@ const getUserAndFeeds = async (username) => {
   }
 };
 
+const getPostData = async (shortcode) => {
+  try {
+    const ig = await getClient();
+
+    const post = await ig.media.info(shortcodeToID(shortcode));
+
+    return post;
+  } catch (error) {
+    throw error;
+  }
+};
+
 module.exports = {
   getUserData,
   getUserFeeds,
   getUserAndFeeds,
+  getPostData,
 };

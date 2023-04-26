@@ -63,8 +63,24 @@ const getUserAndFeeds = async (req, res) => {
   }
 };
 
+const getPostData = async (req, res) => {
+  try {
+    const { shortcode } = req.params;
+    let data = await igService.getPostData(shortcode);
+    res.status(200).json({
+      message: `Successfully fetched post data with shortcode ${shortcode}`,
+      data,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   getUserData,
   getUserFeeds,
   getUserAndFeeds,
+  getPostData,
 };
