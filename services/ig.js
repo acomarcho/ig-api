@@ -43,7 +43,7 @@ const getUserFeeds = async (username) => {
       const code = post.code;
       const comment_count = post.comment_count;
       const like_count = post.like_count;
-      const caption = post.caption.text;
+      const caption = post.caption ? post.caption.text : "";
 
       let thumbnail_url = "";
       if (post.image_versions2) {
@@ -103,7 +103,7 @@ const getUserAndFeeds = async (username) => {
       const code = post.code;
       const comment_count = post.comment_count;
       const like_count = post.like_count;
-      const caption = post.caption.text;
+      const caption = post.caption ? post.caption.text : "";
 
       let thumbnail_url = "";
       if (post.image_versions2) {
