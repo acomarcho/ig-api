@@ -7,18 +7,22 @@ const getUserData = async (username) => {
 
     const searchResults = await ig.user.searchExact(username);
 
-    if (!searchResults) {
-      throw {
-        status: 404,
-        message: `Username ${username} not found`,
-      };
-    }
-
     const user = await ig.user.info(searchResults.pk);
 
-    return user;
+    // Return user data
+    const full_name = user.full_name;
+    const follower_count = user.follower_count;
+    const following_count = user.following_count;
+    const profile_pic_url = user.hd_profile_pic_url_info.url;
+
+    return {
+      username,
+      full_name,
+      follower_count,
+      following_count,
+      profile_pic_url,
+    };
   } catch (error) {
-    console.log("Error", error);
     throw error;
   }
 };

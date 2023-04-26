@@ -9,9 +9,15 @@ const getUserData = async (req, res) => {
       data,
     });
   } catch (error) {
-    res.status(error.status).json({
-      message: error.message,
-    });
+    if (error.message === "User with exact username not found.") {
+      res.status(404).json({
+        message: error.message,
+      });
+    } else {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
   }
 };
 
@@ -24,9 +30,15 @@ const getUserFeeds = async (req, res) => {
       data,
     });
   } catch (error) {
-    res.status(error.status).json({
-      message: error.message,
-    });
+    if (error.message === "User with exact username not found.") {
+      res.status(404).json({
+        message: error.message,
+      });
+    } else {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
   }
 };
 
