@@ -1,26 +1,17 @@
 {
-  "name": "ig-api",
+  "name": "ig-private-api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/acomarcho/ig-api.git"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/acomarcho/ig-api/issues"
-  },
-  "homepage": "https://github.com/acomarcho/ig-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
-    "superagent": "^8.0.9"
+    "instagram-private-api": "^1.45.3"
   }
 }
