@@ -41,7 +41,33 @@ const getUserFeeds = async (username) => {
     }
 
     const feed = ig.feed.user(searchResults.pk);
-    const posts = await feed.items();
+    let posts = await feed.items();
+
+    // Process feeds data
+    posts = posts.map((post) => {
+      const code = post.code;
+      const comment_count = post.comment_count;
+      const like_count = post.like_count;
+      const caption = post.caption.text;
+
+      let thumbnail_url = "";
+      if (post.image_versions2) {
+        // Image/video
+        thumbnail_url = post.image_versions2.candidates[0].url;
+      } else {
+        // Carousel
+        thumbnail_url =
+          post.carousel_media[0].image_versions2.candidates[0].url;
+      }
+
+      return {
+        code,
+        comment_count,
+        like_count,
+        caption,
+        thumbnail_url,
+      };
+    });
 
     return posts;
   } catch (error) {
