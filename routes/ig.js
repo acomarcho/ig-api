@@ -6,5 +6,7 @@ const igController = require("../controllers/ig");
 router.get("/user/:username", igController.getUserData);
 // GET /ig/feeds/:username
 router.get("/feeds/:username", igController.getUserFeeds);
+// GET /ig/user-and-feeds/:username
+router.get("/user-and-feeds/:username", igController.getUserAndFeeds);
 
 module.exports = router;
