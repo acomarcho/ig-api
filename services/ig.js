@@ -3,12 +3,22 @@ require("dotenv").config();
 
 const getUserData = async (username) => {
   try {
+    console.log(
+      `Sending request with X_IG_APP_ID = ${process.env.X_IG_APP_ID}`
+    );
+
     const response = await superagent
       .get(
         `https://www.instagram.com/api/v1/users/web_profile_info/?username=${username}`
       )
-      .set("x-ig-app-id", process.env.X_IG_APP_ID);
+      .set("x-ig-app-id", process.env.X_IG_APP_ID)
+      .set(
+        "user-agent",
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36 Edg/112.0.1722.58"
+      );
 
+    console.log("Response", response);
+    
     const { user } = response.body.data;
 
     // General data
