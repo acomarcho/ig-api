@@ -9,6 +9,9 @@ This project uses `instagram-private-api`.
 3. Run the server with `npm start`.
 4. You can send HTTP requests to that server!
 
+# Additional tips
+To embed the CORS protected image in your site, you can use my proxy, https://github.com/acomarcho/cors-proxy!
+
 # Available endpoints and example
 ## Get user data
 `GET {{hostname}}/ig/user/:username`
