@@ -1,4 +1,5 @@
 const igService = require("../services/ig");
+const { refreshClient } = require("../services/igClient");
 
 const getUserData = async (req, res) => {
   try {
@@ -14,6 +15,7 @@ const getUserData = async (req, res) => {
         message: error.message,
       });
     } else {
+      await refreshClient();
       res.status(500).json({
         message: error.message,
       });
@@ -35,6 +37,7 @@ const getUserFeeds = async (req, res) => {
         message: error.message,
       });
     } else {
+      await refreshClient();
       res.status(500).json({
         message: error.message,
       });
@@ -56,6 +59,7 @@ const getUserAndFeeds = async (req, res) => {
         message: error.message,
       });
     } else {
+      await refreshClient();
       res.status(500).json({
         message: error.message,
       });
@@ -72,6 +76,7 @@ const getPostData = async (req, res) => {
       data,
     });
   } catch (error) {
+    await refreshClient();
     res.status(500).json({
       message: error.message,
     });
