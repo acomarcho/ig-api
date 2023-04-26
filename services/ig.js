@@ -140,8 +140,31 @@ const getPostData = async (shortcode) => {
 
     const post = await ig.media.info(shortcodeToID(shortcode));
 
-    return post;
+    // Process media data
+    const item = post.items[0];
+    const username = item.caption.user.username;
+    const comment_count = item.comment_count;
+    const like_count = item.like_count;
+    const caption = item.caption.text;
+    let thumbnail_url = "";
+    if (item.image_versions2) {
+      // Image/video
+      thumbnail_url = item.image_versions2.candidates[0].url;
+    } else {
+      // Carousel
+      thumbnail_url = item.carousel_media[0].image_versions2.candidates[0].url;
+    }
+
+    return {
+      username,
+      code: shortcode,
+      comment_count,
+      like_count,
+      caption,
+      thumbnail_url,
+    };
   } catch (error) {
+    console.log("Error", error);
     throw error;
   }
 };
