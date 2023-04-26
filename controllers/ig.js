@@ -9,8 +9,8 @@ const getUserData = async (req, res) => {
       data,
     });
   } catch (error) {
-    res.status(500).json({
-      message: "Internal server error",
+    res.status(error.response.res.statusCode).json({
+      message: error.response.res.statusMessage,
     });
   }
 };
